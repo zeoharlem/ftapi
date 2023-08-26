@@ -5,5 +5,5 @@ import { PrismaService } from 'src/prisma/prisma.service';
 export class CategoryService {
   constructor(private prisma: PrismaService) {}
 
-  getCategory() {}
+  async getCategory() {}
 }

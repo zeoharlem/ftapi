@@ -53,7 +53,13 @@ export class AuthService {
     if (!user) throw new ForbiddenException('Email not found');
     const pwMatches = await argon.verify(user.password, dto.password);
     if (!pwMatches) throw new ForbiddenException('Incorrect Password');
-    return this.generatedSignToken(user.id, user.email);
+
+    delete user.password;
+    return {
+      user,
+      accessToken: (await this.generatedSignToken(user.id, user.email))
+        .accessToken,
+    };
   }
 
   async generatedSignToken(

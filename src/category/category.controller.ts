@@ -13,4 +13,7 @@ export class CategoryController {
     });
     return 'list of categories';
   }
+
+  @Get(':id')
+  getCategoryById() {}
 }
